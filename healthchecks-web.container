@@ -7,7 +7,8 @@ PartOf=healthchecks.pod
 [Container]
 ContainerName=healtchecks-web
 Pod=healthchecks.pod
-Image=healthchecks/healthchecks:latest
+Image=docker.io/healthchecks/healthchecks:latest
+AutoUpdate=registry
 Exec=bash -c 'uwsgi /opt/healthchecks/docker/uwsgi.ini'
 UserNS=keep-id
 User=0
