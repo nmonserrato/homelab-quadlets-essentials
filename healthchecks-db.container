@@ -1,0 +1,12 @@
+[Unit]
+Description=Healthchecks DB container
+PartOf=healthchecks.pod
+
+[Container]
+ContainerName=healtchecks-db
+Pod=healthchecks.pod
+Image=postgres:16
+UserNS=keep-id
+Environment=POSTGRES_DB=postgres
+Secret=healthchecksdb-password,type=env,target=POSTGRES_PASSWORD
+Volume=%h/volumes/healthchecks_db:/var/lib/postgresql/data

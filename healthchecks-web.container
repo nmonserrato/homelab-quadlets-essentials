@@ -1,0 +1,27 @@
+[Unit]
+Description=Healthchecks Web container
+Requires=healthchecks-db.container
+After=healthchecks-db.container
+PartOf=healthchecks.pod
+
+[Container]
+ContainerName=healtchecks-web
+Pod=healthchecks.pod
+Image=healthchecks/healthchecks:latest
+Exec=bash -c 'uwsgi /opt/healthchecks/docker/uwsgi.ini'
+UserNS=keep-id
+User=0
+Secret=healthchecksweb-secret_key,type=env,target=SECRET_KEY
+Secret=healthchecksweb-email_host,type=env,target=EMAIL_HOST
+Secret=healthchecksweb-site_root,type=env,target=SITE_ROOT
+Secret=healthchecksweb-allowed_hosts,type=env,target=ALLOWED_HOSTS
+Secret=healthchecksdb-password,type=env,target=DB_PASSWORD
+Environment=DEBUG=False
+Environment=EMAIL_PORT=9025
+Environment=EMAIL_USE_TLS=False
+Environment=EMAIL_USE_VERIFICATION=False
+Environment=DB=postgres
+Environment=DB_NAME=postgres
+Environment=DB_HOST=localhost
+Environment=INTEGRATIONS_ALLOW_PRIVATE_IPS=True
+
