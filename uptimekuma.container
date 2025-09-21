@@ -3,11 +3,15 @@ Description=UptimeKuma container
 
 [Container]
 ContainerName=uptimekuma
-Image=docker.io/louislam/uptime-kuma:latest
+Image=registry-1.docker.io/louislam/uptime-kuma:latest
 AutoUpdate=registry
 User=0
 PublishPort=6001:3001
 Volume=%h/volumes/uptimekuma_data:/app/data
+
+[Service]
+Restart=always
+TimeoutStartSec=60
 
 [Install]
 WantedBy=default.target

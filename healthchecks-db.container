@@ -5,7 +5,7 @@ PartOf=healthchecks.pod
 [Container]
 ContainerName=healtchecks-db
 Pod=healthchecks.pod
-Image=docker.io/postgres:16
+Image=registry-1.docker.io/postgres:16
 AutoUpdate=registry
 UserNS=keep-id
 Environment=POSTGRES_DB=postgres
